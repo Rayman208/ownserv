@@ -13,10 +13,11 @@ namespace Licey
     public partial class Form1 : Form
     {
         #region work with ServApi
+        List<Student> students = null;
         private void GetAllStudents()
         {
             dataGridViewStudents.Rows.Clear();
-            List<Student> students = ServAPI.StudentsSelectAll();
+            students = ServAPI.StudentsSelectAll();
 
             foreach (Student student in students)
             {
@@ -49,6 +50,7 @@ namespace Licey
             textBoxDescription.Clear();
             maskedTextBoxAge.Clear();
             comboBoxSex.SelectedIndex = -1;
+            textBoxId.Clear();
         }
         private void AddNewStudent()
         {
@@ -78,6 +80,55 @@ namespace Licey
             GetAllStudents();
         }
 
+        private void FillAddNewStudentFields()
+        {
+            if (dataGridViewStudents.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            DataGridViewRow selectStudent = dataGridViewStudents.SelectedRows[0];
+
+            textBoxId.Text = selectStudent.Cells[0].Value.ToString();
+
+            textBoxFirstName.Text = selectStudent.Cells[1].Value.ToString();
+            textBoxLastName.Text = selectStudent.Cells[2].Value.ToString();
+
+            comboBoxSex.SelectedIndex = selectStudent.Cells[3].Value.ToString() == "женский" ? 0 : 1;
+
+            maskedTextBoxAge.Text = selectStudent.Cells[4].Value.ToString();
+
+            textBoxDescription.Text = selectStudent.Cells[5].Value.ToString();
+        }
+
+        private void UpdateStudent()
+        {
+            if (textBoxFirstName.Text == String.Empty ||
+                textBoxLastName.Text == String.Empty ||
+                textBoxDescription.Text == String.Empty ||
+                maskedTextBoxAge.Text == String.Empty ||
+                comboBoxSex.SelectedIndex == -1)
+            {
+                MessageBox.Show("Ошибка. Заполнены не все поля");
+                return;
+            }
+
+            Student student = new Student()
+            {
+                Id = int.Parse(textBoxId.Text),
+                FirstName = textBoxFirstName.Text,
+                LastName = textBoxLastName.Text,
+                Sex = comboBoxSex.SelectedIndex,
+                Age = int.Parse(maskedTextBoxAge.Text),
+                Description = textBoxDescription.Text
+            };
+
+            ServAPI.StudentsUpdateById(student);
+            ClearAddNewStudentFields();
+
+            GetAllStudents();
+        }
+
         #endregion
 
         public Form1()
@@ -98,6 +149,21 @@ namespace Licey
         private void buttonAddNewStudent_Click(object sender, EventArgs e)
         {
             AddNewStudent();
+        }
+
+        private void buttonClearAddNewStudentFields_Click(object sender, EventArgs e)
+        {
+            ClearAddNewStudentFields();
+        }
+
+        private void dataGridViewStudents_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            FillAddNewStudentFields();
+        }
+
+        private void buttonUpdateStudent_Click(object sender, EventArgs e)
+        {
+            UpdateStudent();
         }
     }
 }

@@ -48,5 +48,13 @@ namespace Licey
 
             ExecuteCommand(command, parameters);
         }
+
+        public static void StudentsUpdateById(Student student)
+        {
+            string command = "students.update.byid";
+            string parameters = JsonConvert.SerializeObject(student);
+
+            ExecuteCommand(command, parameters);
+        }
     }
 }

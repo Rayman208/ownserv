@@ -48,6 +48,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.buttonAddNewStudent = new System.Windows.Forms.Button();
+            this.buttonClearAddNewStudentFields = new System.Windows.Forms.Button();
+            this.buttonUpdateStudent = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +74,7 @@
             this.dataGridViewStudents.ReadOnly = true;
             this.dataGridViewStudents.Size = new System.Drawing.Size(717, 196);
             this.dataGridViewStudents.TabIndex = 0;
+            this.dataGridViewStudents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewStudents_CellClick);
             // 
             // Column1
             // 
@@ -211,7 +216,7 @@
             // 
             this.textBoxDescription.Location = new System.Drawing.Point(462, 287);
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(267, 20);
+            this.textBoxDescription.Size = new System.Drawing.Size(227, 20);
             this.textBoxDescription.TabIndex = 4;
             // 
             // buttonAddNewStudent
@@ -224,17 +229,58 @@
             this.buttonAddNewStudent.UseVisualStyleBackColor = true;
             this.buttonAddNewStudent.Click += new System.EventHandler(this.buttonAddNewStudent_Click);
             // 
+            // buttonClearAddNewStudentFields
+            // 
+            this.buttonClearAddNewStudentFields.Location = new System.Drawing.Point(16, 346);
+            this.buttonClearAddNewStudentFields.Name = "buttonClearAddNewStudentFields";
+            this.buttonClearAddNewStudentFields.Size = new System.Drawing.Size(713, 23);
+            this.buttonClearAddNewStudentFields.TabIndex = 8;
+            this.buttonClearAddNewStudentFields.Text = "Очистить поля ввода";
+            this.buttonClearAddNewStudentFields.UseVisualStyleBackColor = true;
+            this.buttonClearAddNewStudentFields.Click += new System.EventHandler(this.buttonClearAddNewStudentFields_Click);
+            // 
+            // buttonUpdateStudent
+            // 
+            this.buttonUpdateStudent.Location = new System.Drawing.Point(16, 376);
+            this.buttonUpdateStudent.Name = "buttonUpdateStudent";
+            this.buttonUpdateStudent.Size = new System.Drawing.Size(713, 23);
+            this.buttonUpdateStudent.TabIndex = 9;
+            this.buttonUpdateStudent.Text = "Обновить студента";
+            this.buttonUpdateStudent.UseVisualStyleBackColor = true;
+            this.buttonUpdateStudent.Click += new System.EventHandler(this.buttonUpdateStudent_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(692, 271);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(15, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "id";
+            // 
+            // textBoxId
+            // 
+            this.textBoxId.Location = new System.Drawing.Point(695, 287);
+            this.textBoxId.Name = "textBoxId";
+            this.textBoxId.ReadOnly = true;
+            this.textBoxId.Size = new System.Drawing.Size(34, 20);
+            this.textBoxId.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 459);
+            this.Controls.Add(this.textBoxId);
+            this.Controls.Add(this.buttonUpdateStudent);
+            this.Controls.Add(this.buttonClearAddNewStudentFields);
             this.Controls.Add(this.buttonAddNewStudent);
             this.Controls.Add(this.maskedTextBoxAge);
             this.Controls.Add(this.comboBoxSex);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.textBoxLastName);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -273,6 +319,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Button buttonAddNewStudent;
+        private System.Windows.Forms.Button buttonClearAddNewStudentFields;
+        private System.Windows.Forms.Button buttonUpdateStudent;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxId;
     }
 }
 
